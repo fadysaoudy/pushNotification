@@ -3,11 +3,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:push_notification/screens/home/home.dart';
 import 'package:push_notification/screens/login/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
+  static Page page() => const MaterialPage<void>(child: Login());
+  static Route route() {
+    return MaterialPageRoute<void>(builder: (_) => const Login());
+  }
 
   @override
   State<Login> createState() => _LoginState();
@@ -110,7 +115,12 @@ class _LoginState extends State<Login> {
                           onPressed: () {
                             _formKey.currentState!.save();
                             if (_formKey.currentState!.validate()) {
-                              print(_emailController.text);
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => const Home(),
+                                ),
+                              );
                             }
                           },
                         ),
