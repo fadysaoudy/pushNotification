@@ -9,11 +9,13 @@ class PasswordTextField extends StatelessWidget {
     required bool emailNameError,
     required this.pass_valid,
     required TextEditingController passwordController,
+    required FocusNode loginFocusNode,
   })  : _passwordFocusNode = passwordFocusNode,
         _emailNameError = emailNameError,
         _passwordController = passwordController,
+        _loginFocusNode = loginFocusNode,
         super(key: key);
-
+  final FocusNode _loginFocusNode;
   final FocusNode _passwordFocusNode;
   final bool _emailNameError;
   final RegExp pass_valid;
@@ -28,7 +30,7 @@ class PasswordTextField extends StatelessWidget {
         if (!_emailNameError) {
           FocusScope.of(context).requestFocus(_passwordFocusNode);
         }
-        FocusScope.of(context).unfocus();
+        FocusScope.of(context).requestFocus(_loginFocusNode);
       },
       validator: FormBuilderValidators.compose(
         [

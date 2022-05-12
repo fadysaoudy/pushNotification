@@ -22,6 +22,8 @@ class _LoginState extends State<Login> {
   final RegExp pass_valid = RegExp(r"(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W)");
   final _emailFocusNode = FocusNode();
   final _passwordFocusNode = FocusNode();
+  final _loginFocusNode = FocusNode();
+
   bool _emailNameError = false;
   bool _passwordNameError = false;
   bool _value = false;
@@ -78,6 +80,7 @@ class _LoginState extends State<Login> {
                         emailController: _emailController),
                     const SizedBox(height: 20),
                     PasswordTextField(
+                        loginFocusNode: _loginFocusNode,
                         passwordFocusNode: _passwordFocusNode,
                         emailNameError: _emailNameError,
                         pass_valid: pass_valid,
@@ -98,6 +101,7 @@ class _LoginState extends State<Login> {
                           activeColor: Colors.green,
                         ),
                         MaterialButton(
+                          focusNode: _loginFocusNode,
                           color: Theme.of(context).colorScheme.secondary,
                           child: const Text(
                             "Login",
