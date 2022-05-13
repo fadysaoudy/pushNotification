@@ -1,4 +1,8 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'dart:async';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -12,15 +16,22 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  final FirebaseMessaging _firebaseMessaging = FirebaseMessaging.instance;
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
 
-    return Container(
-      width: width,
-      height: height,
-      color: Colors.red,
+    return Scaffold(
+      appBar: AppBar(
+        leading: BackButton(),
+        title: Text('data'),
+      ),
     );
   }
 }
